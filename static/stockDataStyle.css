@@ -59,7 +59,7 @@ input#stock_names_tag {
     width:400px;
 }
 
-div.tagsinput span.badTag {
+div.tagsinput span.tag.badTag {
     border: 1px solid #842337;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -75,7 +75,7 @@ div.tagsinput span.badTag {
     font-size: 13px;
 }
 
-div.tagsinput span.badTag a {
+div.tagsinput span.tag.badTag a {
     font-weight: 700;
     color: #842337;
     text-decoration: none;

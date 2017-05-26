@@ -35,7 +35,6 @@ $(function() {
             
                 $('.tag', elem_tags).each(function(index, tag) {
                    if ($.inArray($(tag).text().substr(0,$(tag).text().length-3), data.notFound) != -1) {
-                       $(tag).removeClass("tag");
                        $(tag).addClass("badTag");
                    } 
                 });
