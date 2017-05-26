@@ -10,7 +10,7 @@ from bokeh.embed import components
 from flask import Flask, render_template, request, jsonify
 from pandas import DataFrame
 import pandas as pd
-from datetime import date, timedelta
+from datetime import date
 from dateutil.relativedelta import relativedelta
 
 app = Flask(__name__)
@@ -35,26 +35,33 @@ def get_stock_plot():
     
     stock_data = DataFrame()
     error_list = []
+    plots = 0
     for stock_key in stock_keys:
         try:
             data = quandl.get("WIKI/" + stock_key, start_date=format_date_for_quandl(date.today() + relativedelta(months=-1)), end_date=format_date_for_quandl(date.today()))
         except NotFoundError:
             error_list.append(stock_key)
             continue
-        opening_data = data[["Adj. Open"]]
-        opening_data = opening_data.rename(columns={"Date":"Date", "Adj. Open": stock_key})
+
+        plots+=1
+        opening_data = data[["Open"]]
+        if opening_data.empty:
+            error_list.append(stock_key)
+            continue
+        opening_data = opening_data.rename(columns={"Date":"Date", "Open": stock_key})
         
-        # Save data to session
         if stock_data.empty:
             stock_data = opening_data
         else:
             stock_data = pd.concat([stock_data, opening_data], axis=1)
             
+    if not stock_data.empty and plots > 0:
+        p = TimeSeries(stock_data, y=list(stock_data), title=", ".join(stock_keys), xlabel="", ylabel="Dollar")
+        p.legend.click_policy="hide"
     
-    p = TimeSeries(stock_data, y=list(stock_data), title=", ".join(stock_keys), xlabel="", ylabel="Dollar")
-    p.legend.click_policy="hide"
-    
-    script, div = components(p)
+        script, div = components(p)
+    else:
+        script, div = "", ""
     
     result = {"script": script, "div": div}
     if len(error_list) > 0:
