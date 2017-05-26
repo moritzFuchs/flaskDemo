@@ -1,0 +1,83 @@
+
+body {
+    background:#c2c2c2;   
+}
+
+#wrapper {
+    margin: 50px auto;
+    width:600px;        
+}
+
+#wrapper p {
+    width:600px;
+    background:#ffffff;
+    padding:20px 10px;
+    color:rgb(102, 102, 102);
+    margin:0px;
+}
+
+#error {
+    width:600px;
+    background:#d38787;
+    padding:50px;
+    margin-top:30px;
+    border: 1px solid #842337;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#menu {
+    width:100%;
+    margin-top:30px;
+}
+
+#bokeh_wrapper {
+    margin-top:30px;
+    width:600px;
+    height:600px;
+    background:#fff;
+    position:relative;
+}
+
+#bokeh_wrapper #overlay{
+    background-color:#000;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    position:absolute;    
+    z-index: 200;
+    opacity: 0.5;
+}
+
+#bokeh_wrapper #overlay img {
+    margin:225px;
+}
+
+
+input#stock_names_tag {
+    width:400px;
+}
+
+div.tagsinput span.badTag {
+    border: 1px solid #842337;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    display: block;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+    background: #d38787;
+    color: black;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-family: helvetica;
+    font-size: 13px;
+}
+
+div.tagsinput span.badTag a {
+    font-weight: 700;
+    color: #842337;
+    text-decoration: none;
+    font-size: 11px;
+}
