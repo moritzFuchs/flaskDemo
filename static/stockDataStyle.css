@@ -1,6 +1,28 @@
 
 body {
-    background:#c2c2c2;   
+    background:#c2c2c2;
+}
+
+body:before {    
+    content: "";
+    position: fixed;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    z-index: -1;
+    
+    display: block;
+    background-image: url("stock_market.jpg");
+    background-size:cover;
+    width: 110%;
+    height: 110%;
+    
+    -webkit-filter: ;
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    -webkit-filter: grayscale(100%) blur(5px);
+    filter: gray blur(8px);
 }
 
 #wrapper {

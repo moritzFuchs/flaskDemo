@@ -44,16 +44,16 @@ def get_stock_plot():
             continue
 
         plots+=1
-        opening_data = data[["Open"]]
-        if opening_data.empty:
+        closing_data = data[["Close"]]
+        if closing_data.empty:
             error_list.append(stock_key)
             continue
-        opening_data = opening_data.rename(columns={"Date":"Date", "Open": stock_key})
+        closing_data = closing_data.rename(columns={"Date":"Date", "Close": stock_key})
         
         if stock_data.empty:
-            stock_data = opening_data
+            stock_data = closing_data
         else:
-            stock_data = pd.concat([stock_data, opening_data], axis=1)
+            stock_data = pd.concat([stock_data, closing_data], axis=1)
             
     if not stock_data.empty and plots > 0:
         p = TimeSeries(stock_data, y=list(stock_data), title=", ".join(stock_keys), xlabel="", ylabel="Dollar")
@@ -72,5 +72,3 @@ def get_stock_plot():
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
     
-
-
